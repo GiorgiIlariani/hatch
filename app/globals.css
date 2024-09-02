@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@layer utilities {
+  /* border-b border-[#C1C7CD] */
+  .input-class {
+    @apply bg-[#F2F4F8] rounded-none placeholder:text-[#697077] px-4 py-3 ring-0 !important;
+  }
+
+  .form-message {
+    @apply text-[12px] text-red-500;
+  }
+}

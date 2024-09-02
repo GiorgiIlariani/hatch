@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Saira } from "next/font/google";
+import Provider from "@/redux/provider";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const saira = Saira({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={saira.className}>
+        <Provider>{children}</Provider>
+      </body>
     </html>
   );
 }

@@ -10,3 +10,12 @@ declare interface CustomProps {
   renderSkeleton?: (field: any) => React.ReactNode;
   fieldType: FormFieldType;
 }
+
+
+declare interface UserDetailsTypes {
+  id: number;
+  username: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+}
