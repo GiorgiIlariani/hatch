@@ -12,12 +12,7 @@ import { NavLinks } from "@/constants";
 const Header = () => {
   const { isAuthenticated } = useAppSelector((state) => state.auth);
 
-  const {
-    data: user,
-    isLoading,
-    isFetching,
-    refetch,
-  } = useRetrieveUserQuery(undefined, {
+  const { data: user, refetch } = useRetrieveUserQuery(undefined, {
     skip: !isAuthenticated,
   });
 
@@ -25,7 +20,9 @@ const Header = () => {
     if (isAuthenticated) {
       refetch();
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, refetch]);
+
+  console.log({ user });
 
   return (
     <header className="w-full flex items-center justify-between bg-white px-4 py-5">

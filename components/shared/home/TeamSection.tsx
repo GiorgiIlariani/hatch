@@ -15,7 +15,7 @@ const TeamSection = () => {
 
       <div className="w-full grid items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-10 mt-16">
         {aboutUsConstants.map((person) => (
-          <div className="w-full flex flex-col gap-4">
+          <div className="w-full flex flex-col gap-4" key={person.name}>
             <div className="w-full flex justify-center">
               <Image
                 src={person.profileImg}

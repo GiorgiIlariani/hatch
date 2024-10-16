@@ -18,12 +18,7 @@ import { Button } from "@/components/ui/button";
 const MobileNav = () => {
   const { isAuthenticated } = useAppSelector((state) => state.auth);
 
-  const {
-    data: user,
-    isLoading,
-    isFetching,
-    refetch,
-  } = useRetrieveUserQuery(undefined, {
+  const { data: user, refetch } = useRetrieveUserQuery(undefined, {
     skip: !isAuthenticated,
   });
 
@@ -31,9 +26,7 @@ const MobileNav = () => {
     if (isAuthenticated) {
       refetch();
     }
-  }, [isAuthenticated]);
-
-  console.log({ user });
+  }, [isAuthenticated, refetch]);
 
   return (
     <nav className="md:hidden">
