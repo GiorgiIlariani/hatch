@@ -8,9 +8,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main>
-      <Header />
-
+    <>
       <Hero />
 
       <section className="w-full bg-[#0F62FE] px-5 md:px-10 lg:px-20 py-20 flex flex-col gap-12 ">
@@ -56,9 +54,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <Footer />
-    </main>
+    </>
   );
 }

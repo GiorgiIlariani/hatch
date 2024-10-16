@@ -4,7 +4,7 @@ const authApiSlice = apiSlice.injectEndpoints({
 	endpoints: builder => ({
 		retrieveUser: builder.query<UserDetailsTypes, void>({
 			query: () => ({
-				url: '/api/users/me/',
+				url: '/users/me/',
 				headers: {
 					Authorization: `Bearer ${typeof window !== "undefined" && localStorage.getItem('access-token')}`,
 				},
@@ -25,7 +25,7 @@ const authApiSlice = apiSlice.injectEndpoints({
 				password,
 				username
 			}) => ({
-				url: '/api/users/',
+				url: '/users/',
 				method: 'POST',
 				body: { first_name, last_name, email, password, username },
 			}),

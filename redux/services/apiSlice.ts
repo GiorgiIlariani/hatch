@@ -45,13 +45,13 @@ const baseQueryWithReauth: BaseQueryFn<
 					api,
 					extraOptions
 				);
-
-				console.log(refreshResult.data);
 				
 				
 				if (refreshResult.data) {
 					typeof window !== "undefined" && localStorage.setItem("access-token", (refreshResult?.data as { access?: string })?.access ?? '');
 
+					console.log(refreshResult.data.access);
+					
 					api.dispatch(setAuth());
 					result = await baseQuery(args, api, extraOptions);
 				} else {					

@@ -19,3 +19,13 @@ declare interface UserDetailsTypes {
   first_name: string;
   last_name: string;
 }
+
+declare interface AuthFormProps { 
+  type: "sign-in" | "sign-up" | 'fill-up';
+}
+
+declare interface registerUser {
+  title: string;
+  description: string;
+  skills: string[]; 
+}
