@@ -8,7 +8,7 @@ const TeamSection = () => {
       <div className="flex flex-col gap-2 text-center">
         <span className="text-[#001D6C] text-[20px] font-bold">The Team</span>
         <h3 className="font-bold text-2xl sm:text-3xl lg:text-[42px]">
-          We're INIT - A passionate group of creatives, collaborators, and
+          We&#39;re INIT - A passionate group of creatives, collaborators, and
           innovators. Join us on our journey to success
         </h3>
       </div>
@@ -22,7 +22,6 @@ const TeamSection = () => {
                 alt={person.name}
                 width={416}
                 height={303}
-                //   className="w-full h-[303px] sm:w-[416px] object-cover"
               />
             </div>
 
