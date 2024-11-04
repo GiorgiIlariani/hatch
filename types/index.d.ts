@@ -11,7 +11,6 @@ declare interface CustomProps {
   fieldType: FormFieldType;
 }
 
-
 declare interface UserDetailsTypes {
   id: number;
   username: string;
@@ -20,12 +19,18 @@ declare interface UserDetailsTypes {
   last_name: string;
 }
 
-declare interface AuthFormProps { 
-  type: "sign-in" | "sign-up" | 'fill-up';
+declare interface AuthFormProps {
+  type: "sign-in" | "sign-up" | "fill-up";
 }
 
 declare interface registerUser {
   title: string;
   description: string;
-  skills: string[]; 
+  skills: string[];
 }
+
+declare type PaginationComponentProps = {
+  count: number;
+  page: number;
+  setPag?: Dispatch<SetStateAction<number>>;
+};

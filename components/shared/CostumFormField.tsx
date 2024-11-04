@@ -97,7 +97,6 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
           </FormControl>
         </div>
       );
-
     case FormFieldType.TEXTAREA:
       return (
         <FormControl>
@@ -110,7 +109,6 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
           />
         </FormControl>
       );
-
     case FormFieldType.SKILLS_INPUT:
       return (
         <div className="flex flex-col gap-2">
@@ -128,15 +126,18 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
           <div
             className={`flex flex-wrap gap-2 mt-2 ${
               skills.length === 0 && "hidden"
-            }`}>
+            }`}
+          >
             {skills.map((skill, index) => (
               <div
                 key={index}
-                className="bg-[#D6E4FF] py-1 px-3 border border-[#ADC9FE] flex items-center gap-2">
+                className="bg-[#D6E4FF] py-1 px-3 border border-[#ADC9FE] flex items-center gap-2"
+              >
                 <p className="text-[#2e2e2e]">{skill}</p>
                 <span
                   className="cursor-pointer text-[#5886DB]"
-                  onClick={() => removeSkill(skill)}>
+                  onClick={() => removeSkill(skill)}
+                >
                   <IoIosClose />
                 </span>
               </div>
@@ -144,7 +145,6 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
           </div>
         </div>
       );
-
     case FormFieldType.CHECKBOX:
       return (
         <FormControl>
@@ -160,34 +160,16 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
           </div>
         </FormControl>
       );
-    // case FormFieldType.DATE_PICKER:
-    //   return (
-    //     <div className="flex rounded-md border border-dark-500 bg-dark-400">
-    //       <Image
-    //         src="/assets/icons/calendar.svg"
-    //         height={24}
-    //         width={24}
-    //         alt="user"
-    //         className="ml-2"
-    //       />
-    //       <FormControl>
-    //         <ReactDatePicker
-    //           showTimeSelect={props.showTimeSelect ?? false}
-    //           selected={field.value}
-    //           onChange={(date: Date) => field.onChange(date)}
-    //           timeInputLabel="Time:"
-    //           dateFormat={props.dateFormat ?? "MM/dd/yyyy"}
-    //           wrapperClassName="date-picker"
-    //         />
-    //       </FormControl>
-    //     </div>
-    //   );
     case FormFieldType.SELECT:
       return (
         <FormControl>
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
-              <SelectTrigger className="input-class">
+              <SelectTrigger
+                className={`input-class ${
+                  props.error ? "border border-red-500" : "border-none"
+                }`}
+              >
                 <SelectValue placeholder={props.placeholder} />
               </SelectTrigger>
             </FormControl>

@@ -1,30 +1,20 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Separator } from "@/components/ui/separator";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-import {
-  useLoginMutation,
-  useRegisterMutation,
-} from "@/redux/features/authApiSlice";
-import { useAppDispatch } from "@/redux/hooks";
-import { setAuth } from "@/redux/features/authSlice";
 import { dropStartupFormSchema } from "@/lib/validation";
 import CustomFormField, { FormFieldType } from "../shared/CostumFormField";
+// import FileUploader from "../shared/FileUploader";
 
 const DropStartupForm = () => {
   // 1. Define your form.
   const form = useForm<z.infer<typeof dropStartupFormSchema>>({
     resolver: zodResolver(dropStartupFormSchema),
     defaultValues: {
+      logo: "",
       name: "",
       website: "",
       location: "",
@@ -46,6 +36,7 @@ const DropStartupForm = () => {
       <div className="flex flex-col gap-4 mt-6">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            {/* <FileUploader /> */}
             {/* NAME */}
             <CustomFormField
               fieldType={FormFieldType.INPUT}
@@ -128,32 +119,3 @@ const DropStartupForm = () => {
 };
 
 export default DropStartupForm;
-
-//  <CustomInput
-//               control={form.control}
-//               name="name"
-//               label="Name"
-//               placeholder="Name"
-//               error={error.name}
-//             />
-//             <CustomInput
-//               control={form.control}
-//               name="website"
-//               label="Website"
-//               placeholder="https://example.com"
-//               error={error.website}
-//             />
-//              <CustomInput
-//               control={form.control}
-//               name="location"
-//               label="Location"
-//               placeholder="Tbilisi, Georgia"
-//               error={error.location}
-//             />
-//             <CustomInput
-//               control={form.control}
-//               name="industry"
-//               label="Indusrty"
-//               placeholder="Choose Indusrty"
-//               error={error.location}
-//             />

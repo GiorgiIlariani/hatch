@@ -28,7 +28,7 @@ const TeamSection = () => {
             <div className="w-full flex flex-col items-center gap-2 md:gap-4">
               <div className="text-center">
                 <h3 className="text-[#21272A] text-lg">{person.name}</h3>
-                <span className="text-[#697077] text-lg">
+                <span className="text-[#5d6063] text-lg">
                   {person.profession}
                 </span>
               </div>

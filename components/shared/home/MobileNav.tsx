@@ -42,7 +42,8 @@ const MobileNav = () => {
         </SheetTrigger>
         <SheetContent
           className="flex flex-col gap-6 bg-white md:hidden"
-          aria-describedby="nav items">
+          aria-describedby="nav items"
+        >
           <SheetTitle>
             <Image
               src="/assets/header-logo.png"
@@ -52,8 +53,7 @@ const MobileNav = () => {
             />
           </SheetTitle>
           <Separator className="border border-gray-50" />
-          <NavItems />
-          {!user && (
+          {!user ? (
             <div className="w-full flex items-center gap-2 mt-8">
               <Link href="/sign-in" className="flex-1">
                 <Button className="px-7 py-5 border-2 border-[#0000FF] text-[#0000FF] bg-transparent cursor-pointer">
@@ -64,6 +64,8 @@ const MobileNav = () => {
                 Start Free Trial
               </Button>
             </div>
+          ) : (
+            <NavItems />
           )}
         </SheetContent>
       </Sheet>

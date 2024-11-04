@@ -18,7 +18,8 @@ const NavItems = () => {
             key={href}
             className={`${
               isActive && "bg-primary text-white"
-            } text-xl font-normal flex items-center gap-2 p-3 w-full`}>
+            } text-base text-[#051F4F] font-medium flex items-center gap-2 p-3 w-full`}
+          >
             {icon}
             {label}
           </Link>

@@ -15,7 +15,7 @@ const Hero = () => {
             collaborators here
           </p>
 
-          <Button className="px-5 py-3 border-2 border-[#0000FF] bg-[#0000FF] text-white font-bold">
+          <Button className="px-5 py-3 border-2 border-[#0000FF] bg-[#0000FF] hover:bg-[#0000FF] text-white font-bold">
             Try it Yourself
           </Button>
         </div>

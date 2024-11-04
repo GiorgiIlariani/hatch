@@ -24,8 +24,16 @@ import { FaArrowRight } from "react-icons/fa";
 import { registerUser } from "@/lib/actions/user-actions";
 import { useState } from "react";
 
+const remembered_email =
+  typeof window !== "undefined" && localStorage.getItem("remembered_email");
+const remembered_password =
+  typeof window !== "undefined" && localStorage.getItem("remembered_password");
+
 const AuthForm = ({ type }: AuthFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(
+    remembered_email && remembered_password ? true : false
+  );
   const [register] = useRegisterMutation();
   const [login] = useLoginMutation();
   const dispatch = useAppDispatch();
@@ -37,8 +45,8 @@ const AuthForm = ({ type }: AuthFormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: remembered_email || "",
+      password: remembered_password || "",
     },
   });
 
@@ -51,15 +59,15 @@ const AuthForm = ({ type }: AuthFormProps) => {
       last_name,
       email,
       password,
-      profession,
-      skills,
-      description,
+      profession = "",
+      skills = [],
+      description = "",
     } = data;
 
     try {
       if (type === "sign-up") {
         await register({
-          username: "test username",
+          // username,
           first_name,
           last_name,
           email,
@@ -77,6 +85,15 @@ const AuthForm = ({ type }: AuthFormProps) => {
           username: email,
         }).unwrap();
 
+        console.log(response);
+
+        if (rememberMe === true && response.access) {
+          typeof window !== "undefined" &&
+            localStorage.setItem("remembered_email", String(email));
+          typeof window !== "undefined" &&
+            localStorage.setItem("remembered_password", String(password));
+        }
+
         typeof window !== "undefined" &&
           localStorage.setItem("access-token", response.access);
         typeof window !== "undefined" &&
@@ -86,8 +103,6 @@ const AuthForm = ({ type }: AuthFormProps) => {
         router.push("/");
       }
 
-      console.log(skills);
-
       if (type === "fill-up") {
         const response = await registerUser({
           title: profession,
@@ -95,7 +110,8 @@ const AuthForm = ({ type }: AuthFormProps) => {
           skills,
         });
 
-        if (response) router.push("/sign-in");
+        console.log({ response });
+        // if (response) router.push("/sign-in");
       }
     } catch (error) {
       console.log(error);
@@ -104,7 +120,6 @@ const AuthForm = ({ type }: AuthFormProps) => {
       setIsLoading(false); // End loading state
     }
   };
-  console.log(form.formState.errors);
 
   const error = form.formState.errors;
 
@@ -186,10 +201,20 @@ const AuthForm = ({ type }: AuthFormProps) => {
           {type === "sign-in" && (
             <div className="w-full flex justify-between items-center">
               <div className="flex items-center space-x-2">
-                <Checkbox id="terms" />
+                <Checkbox
+                  id="terms"
+                  onCheckedChange={() => setRememberMe(!rememberMe)}
+                  checked={
+                    Boolean(remembered_email) ||
+                    (false && Boolean(remembered_password)) ||
+                    false ||
+                    rememberMe
+                  }
+                />
                 <label
                   htmlFor="terms"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
                   remember me
                 </label>
               </div>
@@ -237,7 +262,8 @@ const AuthForm = ({ type }: AuthFormProps) => {
             className={`w-full py-4 font-medium text-base ${
               isLoading ? "bg-gray-400" : "bg-[#0F62FE] text-white"
             }`}
-            disabled={isLoading}>
+            disabled={isLoading}
+          >
             {isLoading ? (
               "Loading..."
             ) : type === "sign-in" ? (
@@ -266,14 +292,16 @@ const AuthForm = ({ type }: AuthFormProps) => {
           </p>
           <Link
             href={type === "sign-in" ? "/sign-up" : "/sign-in"}
-            className="text-[#0F62FE] text-sm">
+            className="text-[#0F62FE] text-sm"
+          >
             {type === "sign-in" ? "Sign Up" : "Sign In"}
           </Link>
         </footer>
       ) : (
         <Link
           href="/"
-          className="text-[#0F62FE] text-base font-semibold underline text-center w-full flex justify-center">
+          className="text-[#0F62FE] text-base font-semibold underline text-center w-full flex justify-center"
+        >
           Skip For Later
         </Link>
       )}

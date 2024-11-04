@@ -17,6 +17,24 @@ export const headerConstants = [
   },
 ];
 
+export const leftSidebarConstants = [
+  {
+    text: "Startups",
+    route: "/startups",
+    image: "/assets/images/smiley-f.png",
+  },
+  {
+    text: "Jobs",
+    route: "/jobs",
+    image: "/assets/images/smiley-f.png",
+  },
+  {
+    text: "Experts",
+    route: "/experts",
+    image: "/assets/images/smiley-f.png",
+  },
+];
+
 export const footerConstants = [
   {
     image: "/assets/icons/youtube.svg",
@@ -100,5 +118,29 @@ export const NavLinks = [
     label: "Contact",
     href: "/contact",
     icon: <CgArrowTopRightO />,
+  },
+];
+
+import { IoLocationOutline } from "react-icons/io5";
+import { IoBagOutline } from "react-icons/io5";
+import { IoPeople } from "react-icons/io5";
+import { HiOutlineRocketLaunch } from "react-icons/hi2";
+
+export const startupCardConstants = [
+  {
+    text: "location",
+    icon: <IoLocationOutline />,
+  },
+  {
+    text: "Industry",
+    icon: <IoBagOutline />,
+  },
+  {
+    text: "10-50",
+    icon: <IoPeople />,
+  },
+  {
+    text: "Stage",
+    icon: <HiOutlineRocketLaunch />,
   },
 ];
